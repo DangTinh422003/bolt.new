@@ -121,29 +121,29 @@ export const Workbench = memo(({ chatStarted, isStreaming }: WorkspaceProps) => 
     }
   }
 
-  useEffect(() => {
-    (async () => {
-      const test: {
-        filePath: string;
-        fileContent: string;
-      }[] = [];
+  // useEffect(() => {
+  //   (async () => {
+  //     const test: {
+  //       filePath: string;
+  //       fileContent: string;
+  //     }[] = [];
 
-      if (!isStreaming && Object.values(files).length > 0) {
-        for (const [key, value] of Object.entries(files)) {
-          if (value?.type === 'file') {
-            const fileContent = value.content;
-            test.push({ filePath: key, fileContent });
-          }
-        }
-      }
+  //     if (!isStreaming && Object.values(files).length > 0) {
+  //       for (const [key, value] of Object.entries(files)) {
+  //         if (value?.type === 'file') {
+  //           const fileContent = value.content;
+  //           test.push({ filePath: key, fileContent });
+  //         }
+  //       }
+  //     }
 
-      if (test.length > 0) {
-        for (const { filePath, fileContent } of test) {
-          await uploadFileToS3(filePath, fileContent);
-        }
-      }
-    })();
-  }, [files, isStreaming]);
+  //     if (test.length > 0) {
+  //       for (const { filePath, fileContent } of test) {
+  //         await uploadFileToS3(filePath, fileContent);
+  //       }
+  //     }
+  //   })();
+  // }, [files, isStreaming]);
 
   const setSelectedView = (view: WorkbenchViewType) => {
     workbenchStore.currentView.set(view);
